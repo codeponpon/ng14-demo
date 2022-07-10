@@ -1,0 +1,125 @@
+<div class="login-register container-fluid">
+  <div id="box-regist" class="login-box">
+    <div class="panal-box">
+      <form
+        name="loginForm"
+        class="form-horizontal form-material"
+        method="post"
+        ng-submit="submit()"
+        novalidate
+        form-autofill-fix
+      >
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+            <img src="/assets/images/vpm_logo-log.png" class="logo" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <input
+              type="text"
+              class="form-control"
+              name="user_name"
+              ng-model="credentials.user_name"
+              placeholder="Username"
+              required
+              value=""
+            />
+          </div>
+          <div
+            class="error"
+            ng-show="
+              (submitted || loginForm.user_name.$dirty) &&
+              loginForm.user_name.$invalid
+            "
+          >
+            <p class="error" ng-show="loginForm.user_name.$error.required">
+              'Username' is mandatory
+            </p>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12">
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              ng-model="credentials.password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div
+            class="error"
+            ng-show="
+              (submitted || loginForm.password.$dirty) &&
+              loginForm.password.$invalid
+            "
+          >
+            <p class="error" ng-show="loginForm.password.$error.required">
+              'Password' is mandatory
+            </p>
+          </div>
+        </div>
+        <!--Forgot & Reset password and Remember me -->
+        <!-- <div class="form-group">
+        <div class="col-md-12">
+          <div class="checkbox checkbox-primary pull-left p-t-0">
+            <input id="checkbox-signup" type="checkbox">
+            <label for="checkbox-signup"> Remember me </label>
+          </div>
+          <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5">
+          </i> Forgot pwd?</a>
+        </div>
+      </div>-->
+        <div
+          style="margin-top: 10px"
+          class="form-group text-center m-t-20 m-b-10"
+        >
+          <div class="col-xs-12">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+              <input
+                type="submit"
+                id="btn-login"
+                class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
+                value="Log in"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-12 text-center">
+            <p
+              ng-show="error"
+              class="error danger txt-inc"
+              style="color: #ce4844; width: 100%"
+            >
+              The password you entered is incorrect. Please try again.
+            </p>
+          </div>
+        </div>
+      </form>
+
+      <!--Forgot & Reset password -->
+      <!-- <form class="form-horizontal" id="recoverform" action="index.html">
+      <div class="form-group ">
+        <div class="col-xs-12">
+          <h3>Recover Password</h3>
+          <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+        </div>
+      </div>
+      <div class="form-group ">
+        <div class="col-xs-12">
+          <input class="form-control" type="text" required="" placeholder="Email">
+        </div>
+      </div>
+      <div class="form-group text-center m-t-20">
+        <div class="col-xs-12">
+          <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+        </div>
+      </div>
+    </form> -->
+    </div>
+  </div>
+</div>
