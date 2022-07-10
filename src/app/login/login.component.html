@@ -2,63 +2,65 @@
   <div id="box-regist" class="login-box">
     <div class="panal-box">
       <form
-        name="loginForm"
+        *ngIf="!isLoggedIn"
+        name="form"
         class="form-horizontal form-material"
-        method="post"
-        ng-submit="submit()"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
         novalidate
-        form-autofill-fix
       >
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
             <img src="/assets/images/vpm_logo-log.png" class="logo" />
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-            <input
-              type="text"
-              class="form-control"
-              name="user_name"
-              ng-model="credentials.user_name"
-              placeholder="Username"
-              required
-              value=""
-            />
-          </div>
-          <div
-            class="error"
-            ng-show="
-              (submitted || loginForm.user_name.$dirty) &&
-              loginForm.user_name.$invalid
-            "
-          >
-            <p class="error" ng-show="loginForm.user_name.$error.required">
-              'Username' is mandatory
-            </p>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-xs-12 px-2 py-3">
+              <input
+                type="text"
+                class="form-control"
+                name="user_name"
+                [(ngModel)]="form.username"
+                #username="ngModel"
+                required
+                placeholder="Username"
+                [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+              />
+            </div>
+            <div
+              class="error"
+              *ngIf="username.errors && f.submitted"
+              class="invalid-feedback"
+            >
+              <p class="error" ng-show="loginForm.user_name.$error.required">
+                'Username' is mandatory
+              </p>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <div class="col-xs-12">
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              ng-model="credentials.password"
-              placeholder="Password"
-              required
-            />
-          </div>
-          <div
-            class="error"
-            ng-show="
-              (submitted || loginForm.password.$dirty) &&
-              loginForm.password.$invalid
-            "
-          >
-            <p class="error" ng-show="loginForm.password.$error.required">
-              'Password' is mandatory
-            </p>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-xs-12 px-2">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                [(ngModel)]="form.password"
+                placeholder="Password"
+                #password="ngModel"
+                [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+                required
+              />
+            </div>
+            <div
+              *ngIf="password.errors && f.submitted"
+              class="invalid-feedback error"
+            >
+              <div *ngIf="password.errors['required']">
+                'Password' is mandatory
+              </div>
+            </div>
           </div>
         </div>
         <!--Forgot & Reset password and Remember me -->
@@ -78,20 +80,22 @@
         >
           <div class="col-xs-12">
             <!-- Button -->
-            <div class="col-sm-12 controls">
-              <input
+            <div class="col-sm-12 d-grid controls">
+              <button
                 type="submit"
                 id="btn-login"
-                class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light"
+                class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light text-white"
                 value="Log in"
-              />
+              >
+                Log in
+              </button>
             </div>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12 text-center">
             <p
-              ng-show="error"
+              *ngIf="f.submitted && isLoginFailed"
               class="error danger txt-inc"
               style="color: #ce4844; width: 100%"
             >
