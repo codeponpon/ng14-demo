@@ -21,21 +21,20 @@
                 type="text"
                 class="form-control"
                 name="user_name"
-                [(ngModel)]="form.username"
-                #username="ngModel"
-                required
+                [(ngModel)]="form.user_name"
+                #user_name="ngModel"
                 placeholder="Username"
-                [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+                [ngClass]="{ 'is-invalid': f.submitted && user_name.errors }"
+                required
               />
-            </div>
-            <div
-              class="error"
-              *ngIf="username.errors && f.submitted"
-              class="invalid-feedback"
-            >
-              <p class="error" ng-show="loginForm.user_name.$error.required">
-                'Username' is mandatory
-              </p>
+              <div
+                class="error invalid-feedback"
+                *ngIf="user_name.errors && f.submitted"
+              >
+                <p class="error" ng-show="user_name.errors['required']">
+                  'Username' is mandatory
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -52,13 +51,13 @@
                 [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
                 required
               />
-            </div>
-            <div
-              *ngIf="password.errors && f.submitted"
-              class="invalid-feedback error"
-            >
-              <div *ngIf="password.errors['required']">
-                'Password' is mandatory
+              <div
+                *ngIf="password.errors && f.submitted"
+                class="invalid-feedback error"
+              >
+                <div *ngIf="password.errors['required']">
+                  'Password' is mandatory
+                </div>
               </div>
             </div>
           </div>
