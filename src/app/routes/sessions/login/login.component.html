@@ -5,7 +5,7 @@
         *ngIf="!isLoggedIn"
         name="form"
         class="form-horizontal form-material"
-        (ngSubmit)="f.form.valid && onSubmit()"
+        (ngSubmit)="f.form.valid && login()"
         #f="ngForm"
         novalidate
       >
@@ -27,13 +27,8 @@
                 [ngClass]="{ 'is-invalid': f.submitted && user_name.errors }"
                 required
               />
-              <div
-                class="error invalid-feedback"
-                *ngIf="user_name.errors && f.submitted"
-              >
-                <p class="error" ng-show="user_name.errors['required']">
-                  'Username' is mandatory
-                </p>
+              <div class="error invalid-feedback" *ngIf="user_name.errors && f.submitted">
+                <p class="error" ng-show="user_name.errors['required']">'Username' is mandatory</p>
               </div>
             </div>
           </div>
@@ -51,13 +46,8 @@
                 [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
                 required
               />
-              <div
-                *ngIf="password.errors && f.submitted"
-                class="invalid-feedback error"
-              >
-                <div *ngIf="password.errors['required']">
-                  'Password' is mandatory
-                </div>
+              <div *ngIf="password.errors && f.submitted" class="invalid-feedback error">
+                <div *ngIf="password.errors['required']">'Password' is mandatory</div>
               </div>
             </div>
           </div>
@@ -73,10 +63,7 @@
           </i> Forgot pwd?</a>
         </div>
       </div>-->
-        <div
-          style="margin-top: 10px"
-          class="form-group text-center m-t-20 m-b-10"
-        >
+        <div style="margin-top: 10px" class="form-group text-center m-t-20 m-b-10">
           <div class="col-xs-12">
             <!-- Button -->
             <div class="col-sm-12 d-grid controls">

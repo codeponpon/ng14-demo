@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppComponent } from './app.component';
+import { RoutesModule } from '@routes/routes.module';
+import { ThemeModule } from './theme/theme.module';
+import { SharedModule } from '@shared/shared.module';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutesModule,
+    ThemeModule,
     FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
   ],

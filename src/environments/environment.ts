@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrlV1: 'http://vpmpttapi1.gptthailand.com/api/v1',
 };
 
 /*
