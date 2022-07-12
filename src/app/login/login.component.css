@@ -1,84 +1,98 @@
 .login-register {
-  background: url(/assets/images/login-metime.jpg) no-repeat center center /
-    cover !important;
-  height: 100%;
   position: fixed;
+  height: 100%;
+  background: url('/assets/images/login-metime.jpg') no-repeat center center / cover !important;
   opacity: 1 !important;
 }
+
 #box-regist {
-  margin: 30px auto;
   position: relative;
-  transform: translate(0, 0);
-  transition: transform 0.3s ease-out;
   width: 300px;
+  margin: 30px auto;
+  transform: translate(0, 0);
+  transition: transform .3s ease-out;
 }
+
 .panal-box {
-  background: #ffffff;
-  padding: 10px;
   margin-bottom: 15px;
+  padding: 10px;
+  background: #fff;
 }
+
 .login-box {
-  background: #ffffff;
   height: 400px;
   margin: 0 auto;
   margin-top: 10%;
+  background: #fff;
 }
+
 .login-box .footer {
+  right: 0;
+  left: 0;
   width: 100%;
-  left: 0px;
-  right: 0px;
 }
+
 .login-box .social {
   display: block;
   margin-bottom: 30px;
 }
+
 #recoverform {
   display: none;
 }
+
 .logo {
   width: 35%;
 }
-.logo_head_left {
+
+.logo-head-left {
   z-index: 1001;
 }
+
 .logo-link {
   z-index: 500;
   cursor: pointer !important;
 }
+
 .txt-inc {
   font-size: 14px;
   line-height: 25px;
 }
 
-/*Material inputs*/
+/* Material inputs */
 .form-material .form-group {
   overflow: hidden;
 }
+
 .form-material .form-control {
-  background-color: rgba(0, 0, 0, 0);
-  background-position: center bottom, center calc(99%);
-  background-repeat: no-repeat;
-  background-size: 0 2px, 100% 1px;
   padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center bottom, center calc(99%);
+  background-size: 0 2px, 100% 1px;
   transition: background 0s ease-out 0s;
 }
+
 .form-material .form-control,
 .form-material .form-control.focus,
 .form-material .form-control:focus {
-  background-image: linear-gradient(#9675ce, #9675ce),
-    linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+  float: none;
+  background-image:
+    linear-gradient(#9675ce, #9675ce),
+    linear-gradient(rgba(120, 130, 140, .13), rgba(120, 130, 140, .13));
   border: 0 none;
   border-radius: 0;
   box-shadow: none;
-  float: none;
 }
+
 .form-material .form-control.focus,
 .form-material .form-control:focus {
   background-size: 100% 2px, 100% 1px;
   outline: 0 none;
-  transition-duration: 0.3s;
+  transition-duration: .3s;
 }
+
 .form-bordered .form-group {
-  border-bottom: 1px solid rgba(120, 130, 140, 0.13);
   padding-bottom: 20px;
+  border-bottom: 1px solid rgba(120, 130, 140, .13);
 }

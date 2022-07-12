@@ -1,36 +1,42 @@
 .form-horizontal .form-group {
-  margin-left: -7.5px;
   margin-right: -7.5px;
   margin-bottom: 25px;
+  margin-left: -7.5px;
 }
+
 .form-group {
   margin-bottom: 25px;
 }
-/*Material inputs*/
+
+/* Material inputs */
 .form-material .form-group {
   overflow: hidden;
 }
+
 .form-material .form-control {
-  background-color: rgba(0, 0, 0, 0);
-  background-position: center bottom, center calc(99%);
-  background-repeat: no-repeat;
-  background-size: 0 2px, 100% 1px;
   padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center bottom, center calc(99%);
+  background-size: 0 2px, 100% 1px;
   transition: background 0s ease-out 0s;
 }
+
 .form-material .form-control,
 .form-material .form-control.focus,
 .form-material .form-control:focus {
-  background-image: linear-gradient(#9675ce, #9675ce),
-    linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+  float: none;
+  background-image:
+    linear-gradient(#9675ce, #9675ce),
+    linear-gradient(rgba(120, 130, 140, .13), rgba(120, 130, 140, .13));
   border: 0 none;
   border-radius: 0;
   box-shadow: none;
-  float: none;
 }
+
 .form-material .form-control.focus,
 .form-material .form-control:focus {
   background-size: 100% 2px, 100% 1px;
   outline: 0 none;
-  transition-duration: 0.3s;
+  transition-duration: .3s;
 }

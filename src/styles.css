@@ -2,11 +2,13 @@
 @import './assets/css/fonts.css';
 @import './assets/css/button.css';
 @import './assets/css/form.css';
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
-  font-family: 'Kanit', Roboto, 'Helvetica Neue', sans-serif !important;
+  font-family: Kanit, Roboto, 'Helvetica Neue', sans-serif !important;
 }
