@@ -11,7 +11,7 @@ import { currentTimestamp, filterObject } from './helpers';
   providedIn: 'root',
 })
 export class TokenService implements OnDestroy {
-  private key = 'ng-matero-token';
+  private key = 'vpm-token';
 
   private change$ = new BehaviorSubject<BaseToken | undefined>(undefined);
   private refresh$ = new Subject<BaseToken | undefined>();

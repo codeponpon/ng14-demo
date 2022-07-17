@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
           userRole: 'user',
         };
         this.getProfile();
-        this.tokenService.set(this.currentUser);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenService.getRole();
@@ -73,6 +72,7 @@ export class LoginComponent implements OnInit {
           ...res.data,
           projects: res.data.active_projects,
         };
+        this.tokenService.set(this.currentUser);
       },
       error: err => {
         this.errorMessage = err.error.message;

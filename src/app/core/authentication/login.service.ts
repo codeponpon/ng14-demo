@@ -36,8 +36,8 @@ export class LoginService {
   }
 
   me(): Observable<any> {
-    const token = this.tokenService.getBearerToken();
-    httpOptions.headers = httpOptions.headers.set('Authorization', `Bearer ${token}`);
+    const bearerToken = this.tokenService.getBearerToken();
+    httpOptions.headers = httpOptions.headers.set('Authorization', bearerToken);
     return this.http.get(
       environment.baseUrlV1 + '/users/me?includes[]=activeProjects',
       httpOptions
