@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 // import { AuthService } from '@services/auth.service';
 // import { StorageService } from '@services/storage.service';
-import { AuthService, TokenService } from '@core/authentication';
+import { AuthService, PreloaderService, TokenService } from '@core';
 import { filter } from 'rxjs';
 
 @Component({
@@ -29,40 +29,40 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private preloader: PreloaderService
   ) {}
 
   ngOnInit(): void {}
 
   login() {
+    this.preloader.show();
     this.isSubmitting = true;
     const { user_name, password, rememberMe } = this.form;
-    this.auth.login(user_name, password, rememberMe).subscribe(
-      data => {
-        this.currentUser = {
-          ...data,
-          username: user_name,
-          userRole: 'user',
-        };
-        this.getProfile();
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.role = this.tokenService.getRole();
-        this.router.navigateByUrl('/');
-      },
-      (errorRes: HttpErrorResponse) => {
-        if (errorRes.status === 422) {
-          const form = this.form;
-          const errors = errorRes.error.errors;
-          Object.keys(errors).forEach(key => {
-            form.get(key === 'email' ? 'username' : key)?.setErrors({
-              remote: errors[key][0],
+    this.auth
+      .login(user_name, password, rememberMe)
+      .pipe(filter(authenticated => !!authenticated))
+      .subscribe(
+        () => {
+          this.currentUser = {
+            username: user_name,
+            userRole: 'user',
+          };
+          this.getProfile();
+        },
+        (errorRes: HttpErrorResponse) => {
+          if (errorRes.status === 422) {
+            const form = this.form;
+            const errors = errorRes.error.errors;
+            Object.keys(errors).forEach(key => {
+              form.get(key === 'email' ? 'username' : key)?.setErrors({
+                remote: errors[key][0],
+              });
             });
-          });
+          }
+          this.isSubmitting = false;
         }
-        this.isSubmitting = false;
-      }
-    );
+      );
   }
 
   getProfile(): void {
@@ -73,6 +73,10 @@ export class LoginComponent implements OnInit {
           projects: res.data.active_projects,
         };
         this.tokenService.set(this.currentUser);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.role = this.tokenService.getRole();
+        this.router.navigateByUrl('/');
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -80,42 +84,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
-  // onSubmit(): void {
-  //   const { user_name, password } = this.form;
-  //   this.authService.login(user_name, password).subscribe({
-  //     next: data => {
-  //       this.currentUser = {
-  //         ...data,
-  //         username: user_name,
-  //         userRole: 'user',
-  //       };
-  //       this.getProfile(data.access_token);
-  //       this.storageService.saveUser(this.currentUser);
-  //       this.isLoginFailed = false;
-  //       this.isLoggedIn = true;
-  //       this.roles = this.storageService.getUser().userRole;
-  //       this.router.navigateByUrl('/');
-  //     },
-  //     error: err => {
-  //       this.errorMessage = err.error.message;
-  //       this.isLoginFailed = true;
-  //     },
-  //   });
-  // }
-
-  // getProfile(access_token: string): void {
-  //   this.authService.profile(access_token).subscribe({
-  //     next: res => {
-  //       this.currentUser.profile = {
-  //         ...res.data,
-  //         projects: res.data.active_projects,
-  //       };
-  //     },
-  //     error: err => {
-  //       this.errorMessage = err.error.message;
-  //       this.isLoginFailed = true;
-  //     },
-  //   });
-  // }
 }

@@ -1,9 +1,13 @@
 <mat-toolbar class="matero-toolbar">
-  <button mat-icon-button class="matero-toolbar-button" (click)="toggleSidenav.emit()">
+  <button
+    mat-icon-button
+    class="matero-toolbar-button"
+    (click)="toggleChecked = !toggleChecked; toggleCollapsed.emit()"
+  >
     <mat-icon>menu</mat-icon>
   </button>
 
-  <app-branding *ngIf="showBranding"></app-branding>
+  <!-- <app-branding *ngIf="showBranding"></app-branding>
   <span fxFlex></span>
 
   <button mat-icon-button class="matero-toolbar-button" fxHide.lt-sm (click)="toggleFullscreen()">
@@ -17,5 +21,5 @@
     (click)="toggleSidenavNotice.emit()"
   >
     <mat-icon>list</mat-icon>
-  </button>
+  </button> -->
 </mat-toolbar>

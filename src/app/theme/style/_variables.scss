@@ -5,7 +5,7 @@ $gutter: 16px !default;
 
 // Sidenav
 $sidenav-width: 240px !default;
-$sidenav-collapsed-width: 50px !default;
+$sidenav-collapsed-width: 68px !default;
 $sidenav-width-mobile: 280px !default;
 
 // Toolbar
@@ -28,10 +28,10 @@ $font-family-base: $font-family-sans-serif !default;
 // adapting to different screen sizes, for use in media queries.
 $breakpoints: (
   xsmall: 0,
-  small:  600px,
+  small: 600px,
   medium: 960px,
-  large:  1280px,
-  xlarge: 1920px
+  large: 1280px,
+  xlarge: 1920px,
 ) !default;
 
 // Material colors

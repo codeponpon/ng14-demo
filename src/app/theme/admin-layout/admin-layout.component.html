@@ -48,8 +48,8 @@
         *ngIf="options.showHeader && options.headerPos !== 'above'"
         [showToggle]="!options.sidenavCollapsed && options.navPos !== 'top'"
         [showBranding]="options.navPos === 'top'"
-        (toggleSidenav)="sidenav.toggle()"
-        (toggleSidenavNotice)="sidenavNotice.toggle()"
+        (toggleCollapsed)="toggleCollapsed()"
+        [toggleChecked]="!!options.sidenavCollapsed"
       >
       </app-header>
 

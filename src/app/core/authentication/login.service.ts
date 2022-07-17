@@ -14,11 +14,12 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class LoginService {
+  apiEndpoint: string = environment.baseUrl + environment.baseAPIV1;
   constructor(protected http: HttpClient, private tokenService: TokenService) {}
 
   login(user_name: string, password: string, rememberMe = false) {
     return this.http.post<Token>(
-      environment.baseUrlV1 + '/login',
+      this.apiEndpoint + '/login',
       {
         user_name,
         password,
@@ -32,16 +33,15 @@ export class LoginService {
   }
 
   logout() {
-    return this.http.post<any>(environment.baseUrlV1 + '/logout', {});
+    const bearerToken = this.tokenService.getBearerToken();
+    httpOptions.headers = httpOptions.headers.set('Authorization', bearerToken);
+    return this.http.post<any>(this.apiEndpoint + '/logout', {}, httpOptions);
   }
 
   me(): Observable<any> {
     const bearerToken = this.tokenService.getBearerToken();
     httpOptions.headers = httpOptions.headers.set('Authorization', bearerToken);
-    return this.http.get(
-      environment.baseUrlV1 + '/users/me?includes[]=activeProjects',
-      httpOptions
-    );
+    return this.http.get(this.apiEndpoint + '/users/me?includes[]=activeProjects', httpOptions);
   }
 
   menu() {

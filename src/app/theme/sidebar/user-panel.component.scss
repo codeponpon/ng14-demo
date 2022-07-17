@@ -1,7 +1,7 @@
 @use '../style/transitions';
 
 .matero-user-panel {
-  padding: 16px 0;
+  padding: 0 0 16px;
 }
 
 // Set default width and height can avoid flashing before avatar image loaded.
@@ -14,7 +14,8 @@
 }
 
 .matero-user-panel-name,
-.matero-user-panel-email {
+.matero-user-panel-email,
+.user-panel-department {
   margin-top: 0;
   margin-bottom: 8px;
   font-weight: normal;
@@ -22,7 +23,9 @@
 
 .matero-user-panel-name,
 .matero-user-panel-email,
-.matero-user-panel-icons {
+.user-panel-department,
+.matero-user-panel-icons,
+.sub-branding-logo {
   opacity: 1;
   transition: transitions.swift-ease-out(opacity);
 }

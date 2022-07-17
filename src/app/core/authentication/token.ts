@@ -24,6 +24,10 @@ export abstract class BaseToken {
     return this.attributes.role ?? 'user';
   }
 
+  get profile(): object {
+    return this.attributes.profile ?? {};
+  }
+
   valid(): boolean {
     return this.hasAccessToken() && !this.isExpired();
   }

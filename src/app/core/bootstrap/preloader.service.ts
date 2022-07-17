@@ -13,6 +13,17 @@ export class PreloaderService {
     return this.document.getElementById(this.selector);
   }
 
+  show() {
+    const el = this.getElement();
+    if (el) {
+      el.className = 'global-loader';
+
+      if (!el.classList.contains('global-loader')) {
+        el.className += ' global-loader-fade-in';
+      }
+    }
+  }
+
   hide() {
     const el = this.getElement();
     if (el) {

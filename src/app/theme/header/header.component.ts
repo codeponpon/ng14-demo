@@ -22,6 +22,9 @@ export class HeaderComponent {
   @Input() showToggle = true;
   @Input() showBranding = false;
 
+  @Input() toggleChecked = false;
+
+  @Output() toggleCollapsed = new EventEmitter<void>();
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleSidenavNotice = new EventEmitter<void>();
 

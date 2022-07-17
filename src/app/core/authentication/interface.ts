@@ -1,12 +1,26 @@
 export interface User {
   [prop: string]: any;
 
-  id?: number | string | null;
-  name?: string;
+  aid?: number;
+  avatar_url?: string;
+  created_at?: string;
+  department?: string;
   email?: string;
-  avatar?: string;
-  roles?: any[];
-  permissions?: any[];
+  first_name?: string;
+  is_outsource?: number;
+  last_name?: string;
+  phone_number?: string;
+  projects?: object[];
+  role?: string;
+  status?: string;
+  title?: string;
+  updated_at?: string;
+  user_code?: string;
+  user_first_name?: string;
+  user_last_name?: string;
+  user_mid_name?: string;
+  user_name?: string;
+  profile?: any;
 }
 
 export interface Token {
@@ -18,4 +32,5 @@ export interface Token {
   exp?: number;
   refresh_token?: string;
   role?: string;
+  profile?: object;
 }

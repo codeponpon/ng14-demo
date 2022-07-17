@@ -52,12 +52,18 @@
     .menu-caret,
     .matero-user-panel-name,
     .matero-user-panel-email,
-    .matero-user-panel-icons {
+    .user-panel-department,
+    .matero-user-panel-icons,
+    .sub-branding-logo {
       opacity: 0;
     }
 
+    .sub-branding-logo {
+      display: none;
+    }
+
     .matero-user-panel-avatar {
-      transform: scale(.5);
+      transform: scale(.7);
     }
 
     &:hover {
@@ -69,8 +75,14 @@
       .menu-caret,
       .matero-user-panel-name,
       .matero-user-panel-email,
-      .matero-user-panel-icons {
+      .user-panel-department,
+      .matero-user-panel-icons,
+      .sub-branding-logo {
         opacity: 1;
+      }
+
+      .sub-branding-logo {
+        display: inline-block;
       }
 
       .matero-user-panel-avatar {

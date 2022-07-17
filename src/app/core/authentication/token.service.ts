@@ -1,8 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, Subscription, timer } from 'rxjs';
 import { share } from 'rxjs/operators';
+
 import { LocalStorageService } from '@shared';
-import { Token } from './interface';
+import { Token, User } from './interface';
 import { BaseToken } from './token';
 import { TokenFactory } from './token-factory.service';
 import { currentTimestamp, filterObject } from './helpers';
@@ -65,6 +66,10 @@ export class TokenService implements OnDestroy {
     return this.token?.refresh_token;
   }
 
+  currentUser(): User | undefined {
+    return this.storage.get(this.key);
+  }
+
   ngOnDestroy(): void {
     this.clearRefresh();
   }
@@ -75,9 +80,14 @@ export class TokenService implements OnDestroy {
     if (!token) {
       this.storage.remove(this.key);
     } else {
-      const value = Object.assign({ access_token: '', token_type: 'Bearer' }, token, {
-        exp: token.exp ? currentTimestamp() + token.exp : null,
-      });
+      const value = Object.assign(
+        { access_token: '', token_type: 'Bearer' },
+        this.currentUser(),
+        token,
+        {
+          exp: token.exp ? currentTimestamp() + token.exp : null,
+        }
+      );
       this.storage.set(this.key, filterObject(value));
     }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, iif, merge, of } from 'rxjs';
 import { catchError, map, share, switchMap, tap } from 'rxjs/operators';
+
 import { TokenService } from './token.service';
 import { LoginService } from './login.service';
 import { filterObject, isEmptyObject } from './helpers';
@@ -11,10 +12,7 @@ import { User } from './interface';
 })
 export class AuthService {
   private user$ = new BehaviorSubject<User>({});
-  private change$ = merge(
-    this.tokenService.change(),
-    this.tokenService.refresh().pipe(switchMap(() => this.refresh()))
-  ).pipe(
+  private change$ = merge(this.tokenService.change()).pipe(
     switchMap(() => this.assignUser()),
     share()
   );
@@ -35,10 +33,8 @@ export class AuthService {
 
   login(user_name: string, password: string, rememberMe = false) {
     return this.loginService.login(user_name, password, rememberMe).pipe(
-      tap(token => {
-        this.check();
-        this.tokenService.set(token);
-      })
+      tap(token => this.tokenService.set(token)),
+      map(() => this.check())
     );
   }
 
@@ -60,6 +56,10 @@ export class AuthService {
   }
 
   user() {
+    const user = this.tokenService.currentUser();
+    if (user) {
+      this.user$.next(user);
+    }
     return this.user$.pipe(share());
   }
 
@@ -71,6 +71,10 @@ export class AuthService {
     return this.loginService.me();
   }
 
+  setUser(): void {
+    this.assignUser();
+  }
+
   private assignUser() {
     if (!this.check()) {
       return of({}).pipe(tap(user => this.user$.next(user)));
@@ -79,6 +83,12 @@ export class AuthService {
     if (!isEmptyObject(this.user$.getValue())) {
       return of(this.user$.getValue());
     }
-    return this.loginService.me().pipe(tap(user => this.user$.next(user)));
+    return this.loginService.me().pipe(
+      tap(res => {
+        console.log(res.data);
+        this.tokenService.set(res.data);
+        return this.user$.next(res.data);
+      })
+    );
   }
 }

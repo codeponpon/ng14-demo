@@ -8,19 +8,21 @@ import { AuthService, User } from '@core/authentication';
     <div class="matero-user-panel" fxLayout="column" fxLayoutAlign="center center">
       <img
         class="matero-user-panel-avatar"
-        [src]="'./assets/images/users/user-icon.png'"
+        [src]="'./assets' + user.profile.avatar_url"
         alt="avatar"
         width="64"
       />
-      <h4 class="matero-user-panel-name">{{ user.name }}</h4>
-      <h5 class="matero-user-panel-email">{{ user.email }}</h5>
+      <h4 class="matero-user-panel-name">
+        {{ user.profile.first_name }} {{ user.profile.last_name }}
+      </h4>
+      <h5 class="user-panel-department">{{ user.profile.department }}</h5>
       <div class="matero-user-panel-icons">
-        <a routerLink="/profile/overview" mat-icon-button>
+        <!-- <a routerLink="/profile/overview" mat-icon-button>
           <mat-icon class="icon-18">account_circle</mat-icon>
         </a>
         <a routerLink="/profile/settings" mat-icon-button>
           <mat-icon class="icon-18">settings</mat-icon>
-        </a>
+        </a> -->
         <a (click)="logout()" mat-icon-button>
           <mat-icon class="icon-18">exit_to_app</mat-icon>
         </a>

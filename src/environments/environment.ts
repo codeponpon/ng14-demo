@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrlV1: 'http://vpmpttapi1.gptthailand.com/api/v1',
+  baseUrl: 'http://vpmpttapi1.gptthailand.com',
+  baseAPIV1: '/api/v1',
 };
 
 /*

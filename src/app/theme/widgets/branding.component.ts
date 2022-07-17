@@ -5,7 +5,11 @@ import { Component } from '@angular/core';
   template: `
     <a class="matero-branding" href="/">
       <img src="./assets/images/dpm_ic.svg" class="matero-branding-logo-expanded" alt="logo" />
-      <img src="./assets/images/pm_txt.svg" class="matero-branding-logo-expanded" alt="logo" />
+      <img
+        src="./assets/images/pm_txt.svg"
+        class="matero-branding-logo-expanded sub-branding-logo"
+        alt="logo"
+      />
     </a>
   `,
 })

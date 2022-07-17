@@ -1,8 +1,13 @@
-<div class="matero-sidebar-header" *ngIf="showHeader">
+<div
+  class="matero-sidebar-header"
+  *ngIf="showHeader"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
   <app-branding></app-branding>
-  <span fxFlex></span>
+  <!-- <span fxFlex></span>
   <mat-slide-toggle *ngIf="showToggle" [checked]="toggleChecked" (change)="toggleCollapsed.emit()">
-  </mat-slide-toggle>
+  </mat-slide-toggle> -->
 </div>
 
 <div class="matero-sidebar-main scrollbar-none">
