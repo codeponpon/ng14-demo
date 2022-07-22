@@ -1,4 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '@core';
 import { MenuService } from '@core/bootstrap/menu.service';
 
 @Component({
@@ -14,5 +17,9 @@ export class SidemenuComponent {
   menu$ = this.menu.getAll();
   buildRoute = this.menu.buildRoute;
 
-  constructor(private menu: MenuService) {}
+  constructor(private menu: MenuService, private router: Router, private auth: AuthService) {}
+
+  logout() {
+    this.auth.logout().subscribe(() => this.router.navigateByUrl('/auth/login'));
+  }
 }

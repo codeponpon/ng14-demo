@@ -22,10 +22,10 @@ import { AuthService, User } from '@core/authentication';
         </a>
         <a routerLink="/profile/settings" mat-icon-button>
           <mat-icon class="icon-18">settings</mat-icon>
-        </a> -->
+        </a>
         <a (click)="logout()" mat-icon-button>
           <mat-icon class="icon-18">exit_to_app</mat-icon>
-        </a>
+        </a> -->
       </div>
     </div>
   `,

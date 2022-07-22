@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -13,7 +13,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./login.component.css'],
   exportAs: 'ngForm',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   form: any = {
     user_name: null,
     password: null,
@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.preloader.hide();
+  }
 
   login() {
     this.preloader.show();

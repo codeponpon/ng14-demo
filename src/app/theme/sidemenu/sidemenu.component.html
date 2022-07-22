@@ -90,6 +90,37 @@
         </li>
       </ng-template>
     </ng-container>
+    <li
+      navaccordionitem=""
+      routerlinkactive="active"
+      class="matero-sidemenu-item ng-star-inserted"
+      ng-reflect-router-link-active="active"
+      ng-reflect-group="auth/logout"
+      ng-reflect-type="link"
+    >
+      <a
+        matripple=""
+        class="mat-ripple matero-sidemenu-link ng-star-inserted"
+        ng-reflect-disabled="false"
+        style="flex-direction: row; box-sizing: border-box; display: flex"
+        (click)="logout()"
+      >
+        <mat-icon
+          role="img"
+          class="mat-icon notranslate menu-icon material-icons mat-icon-no-color ng-star-inserted"
+          aria-hidden="true"
+          data-mat-icon-type="font"
+          >logout</mat-icon
+        >
+        <span class="menu-name ng-star-inserted">{{ 'menu.logout' | translate }}</span>
+        <span
+          fxflex=""
+          ng-reflect-fx-flex=""
+          class="ng-star-inserted"
+          style="flex: 1 1 0%; box-sizing: border-box"
+        ></span>
+      </a>
+    </li>
   </ul>
 </ng-template>
 
