@@ -1,8 +1,8 @@
 {
   "menu": [
     {
-      "route": "dashboard",
-      "name": "dashboard",
+      "route": "my-page",
+      "name": "my-page",
       "type": "link",
       "icon": "dashboard",
       "badge": {
@@ -28,10 +28,7 @@
         }
       ],
       "permissions": {
-        "only": [
-          "ADMIN",
-          "MANAGER"
-        ]
+        "only": ["ADMIN", "MANAGER"]
       }
     },
     {
@@ -259,10 +256,7 @@
         }
       ],
       "permissions": {
-        "except": [
-          "MANAGER",
-          "GUEST"
-        ]
+        "except": ["MANAGER", "GUEST"]
       }
     },
     {
