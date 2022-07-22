@@ -18,6 +18,7 @@
           navAccordionItem
           class="matero-sidemenu-item"
           routerLinkActive="active"
+          [group]="menuItem.route"
           [type]="menuItem.type"
         >
           <a
@@ -94,7 +95,7 @@
 
 <ng-template #linkTypeTpl let-item="item" let-level="level">
   <mat-icon class="menu-icon" *ngIf="level === 0">{{ item.icon }}</mat-icon>
-  <span class="menu-name">{{ item.name }}</span>
+  <span class="menu-name">{{ item.name | translate }}</span>
   <span class="menu-label bg-{{ item.label.color }}" *ngIf="item.label">
     {{ item.label.value }}
   </span>

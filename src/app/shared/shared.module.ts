@@ -6,11 +6,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
+import { NgxPermissionsModule } from 'ngx-permissions';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MaterialModule } from '../material.module';
 
 import { ErrorCodeComponent } from './components/error-code/error-code.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 const MODULES: any[] = [
   CommonModule,
@@ -23,8 +26,10 @@ const MODULES: any[] = [
   NgProgressRouterModule,
   MaterialModule,
   FlexLayoutModule,
+  TranslateModule,
+  NgxPermissionsModule,
 ];
-const COMPONENTS: any[] = [ErrorCodeComponent];
+const COMPONENTS: any[] = [ErrorCodeComponent, BreadcrumbComponent];
 
 @NgModule({
   imports: [...MODULES],

@@ -5,6 +5,9 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { HeaderComponent } from './header/header.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { AccordionDirective } from './sidemenu/accordion.directive';
+import { AccordionItemDirective } from './sidemenu/accordionItem.directive';
+import { AccordionAnchorDirective } from './sidemenu/accordionanchor.directive';
 import { SidebarNoticeComponent } from './sidebar-notice/sidebar-notice.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserPanelComponent } from './sidebar/user-panel.component';
@@ -12,6 +15,7 @@ import { TopmenuComponent } from './topmenu/topmenu.component';
 import { TopmenuPanelComponent } from './topmenu/topmenu-panel.component';
 
 import { BrandingComponent } from './widgets/branding.component';
+import { TranslateComponent } from './widgets/translate.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { BrandingComponent } from './widgets/branding.component';
     AuthLayoutComponent,
     HeaderComponent,
     SidemenuComponent,
+    AccordionDirective,
+    AccordionItemDirective,
+    AccordionAnchorDirective,
     SidebarComponent,
     UserPanelComponent,
     SidebarNoticeComponent,
     TopmenuComponent,
     TopmenuPanelComponent,
     BrandingComponent,
+    TranslateComponent,
   ],
   imports: [SharedModule],
 })

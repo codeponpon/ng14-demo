@@ -9,7 +9,7 @@ import { MenuService } from '@core/bootstrap/menu.service';
 })
 export class SidemenuComponent {
   // NOTE: Ripple effect make page flashing on mobile
-  @Input() ripple = false;
+  @Input() ripple = true;
 
   menu$ = this.menu.getAll();
   buildRoute = this.menu.buildRoute;
