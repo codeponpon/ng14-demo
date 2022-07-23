@@ -4,7 +4,7 @@
       "route": "my-page",
       "name": "my-page",
       "type": "link",
-      "icon": "dashboard"
+      "icon": "far fa-address-book fa-fw"
     }
   ]
 }

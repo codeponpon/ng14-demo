@@ -38,10 +38,13 @@ export class LoginService {
     return this.http.post<any>(this.apiEndpoint + '/logout', {}, httpOptions);
   }
 
-  me(): Observable<any> {
+  me(params = ''): Observable<any> {
     const bearerToken = this.tokenService.getBearerToken();
     httpOptions.headers = httpOptions.headers.set('Authorization', bearerToken);
-    return this.http.get(this.apiEndpoint + '/users/me?includes[]=activeProjects', httpOptions);
+    return this.http.get(
+      this.apiEndpoint + '/users/me?includes[]=activeProjects' + params,
+      httpOptions
+    );
   }
 
   menu() {

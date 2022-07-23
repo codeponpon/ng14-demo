@@ -21,6 +21,7 @@ export interface User {
   user_mid_name?: string;
   user_name?: string;
   profile?: any;
+  isPM?: boolean;
 }
 
 export interface Token {

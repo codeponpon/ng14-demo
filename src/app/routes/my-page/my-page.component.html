@@ -1,3 +1,34 @@
-<breadcrumb></breadcrumb>
+<div class="matero-row" fxLayout="row wrap">
+  <!-- Statistics -->
+  <div
+    class="matero-col"
+    fxFlex.gt-sm="25"
+    fxFlex.gt-xs="50"
+    fxFlex="100"
+    *ngFor="let item of summaryBox"
+  >
+    <mat-card>
+      <mat-card-content>
+        <a *ngIf="item.link !== ''" [routerLink]="item.link">
+          <ng-container
+            [ngTemplateOutlet]="boxContentTpl"
+            [ngTemplateOutletContext]="{ item }"
+          ></ng-container>
+        </a>
+        <div *ngIf="item.link === ''">
+          <ng-container
+            [ngTemplateOutlet]="boxContentTpl"
+            [ngTemplateOutletContext]="{ item }"
+          ></ng-container>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
 
-<p>my-page works!</p>
+<ng-template #boxContentTpl let-item="item">
+  <i class="{{ item.class }}"></i>
+  <span class="text-header-top">{{ item.title | translate }}</span>
+  <span fxFlex></span>
+  <span class="counter text-right">{{ item.value }}</span>
+</ng-template>

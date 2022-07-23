@@ -19,7 +19,7 @@ export class AuthLayoutComponent implements OnInit {
   ngOnInit(): void {
     const currentUser = this.tokenService.currentUser();
     if (currentUser && currentUser.profile) {
-      this.auth.setUser();
+      // this.auth.setUser();
       this.router.navigateByUrl('/');
     }
   }

@@ -6,6 +6,10 @@ export const environment = {
   production: false,
   baseUrl: 'http://vpmpttapi1.gptthailand.com',
   baseAPIV1: '/api/v1',
+  STATUS: {
+    status_timesheet_ap: [{ status: 'AP' }],
+    status_timesheet_sp: [{ status: 'SP' }],
+  },
 };
 
 /*

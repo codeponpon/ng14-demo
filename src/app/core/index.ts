@@ -1,5 +1,6 @@
 export * from './settings';
 export * from './initializers';
+export * from './api';
 
 // Boostrap
 export * from './bootstrap/menu.service';

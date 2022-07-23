@@ -1,0 +1,18 @@
+/* stylelint-disable order/properties-order */
+.text-header-top {
+  color: #404041;
+  font-size: 13px;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-top: 2px;
+  text-transform: uppercase;
+}
+
+.counter {
+  color: #414141;
+  float: right;
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 2px;
+  position: relative;
+}

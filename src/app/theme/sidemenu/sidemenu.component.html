@@ -125,7 +125,11 @@
 </ng-template>
 
 <ng-template #linkTypeTpl let-item="item" let-level="level">
-  <mat-icon class="menu-icon" *ngIf="level === 0">{{ item.icon }}</mat-icon>
+  <i
+    class="mat-icon menu-icon material-icons mat-icon-no-color"
+    [class]="item.icon"
+    *ngIf="level === 0"
+  ></i>
   <span class="menu-name">{{ item.name | translate }}</span>
   <span class="menu-label bg-{{ item.label.color }}" *ngIf="item.label">
     {{ item.label.value }}

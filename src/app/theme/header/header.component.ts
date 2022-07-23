@@ -19,6 +19,7 @@ import screenfull from 'screenfull';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  @Input() nav: string[] = [];
   @Input() showToggle = true;
   @Input() showBranding = false;
 

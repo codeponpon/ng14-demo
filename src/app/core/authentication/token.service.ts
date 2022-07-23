@@ -74,6 +74,19 @@ export class TokenService implements OnDestroy {
     this.clearRefresh();
   }
 
+  checkIamPM(currentUser: any): User {
+    const profile_aid = currentUser.profile.aid;
+    currentUser.isPM = false;
+    currentUser.profile.projects.forEach((projects: any) => {
+      if (profile_aid == projects.project_manager_user_aid && !currentUser.isPM) {
+        if (projects.status_cid != 'CL' && projects.status_cid != 'DL') {
+          currentUser.isPM = true;
+        }
+      }
+    });
+    return currentUser;
+  }
+
   private save(token?: Token): void {
     this._token = undefined;
 

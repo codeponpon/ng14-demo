@@ -6,6 +6,7 @@ import { TokenService } from './token.service';
 import { LoginService } from './login.service';
 import { filterObject, isEmptyObject } from './helpers';
 import { User } from './interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,11 @@ export class AuthService {
     share()
   );
 
-  constructor(private loginService: LoginService, private tokenService: TokenService) {}
+  constructor(
+    private loginService: LoginService,
+    private tokenService: TokenService,
+    private router: Router
+  ) {}
 
   init() {
     return new Promise<void>(resolve => this.change$.subscribe(() => resolve()));
@@ -67,13 +72,13 @@ export class AuthService {
     return iif(() => this.check(), this.loginService.menu(), of([]));
   }
 
-  userProfile() {
-    return this.loginService.me();
+  userProfile(params?: string) {
+    return this.loginService.me(params);
   }
 
-  setUser(): void {
-    this.assignUser();
-  }
+  // setUser(): void {
+  //   this.assignUser();
+  // }
 
   private assignUser() {
     if (!this.check()) {
@@ -88,6 +93,12 @@ export class AuthService {
         console.log(res.data);
         this.tokenService.set(res.data);
         return this.user$.next(res.data);
+      }),
+      catchError(err => {
+        if (err.status === 401) {
+          this.tokenService.clear();
+        }
+        return of(err);
       })
     );
   }

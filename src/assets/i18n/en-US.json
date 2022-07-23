@@ -141,5 +141,11 @@
     "confirm_delete": "Confirm delete?",
     "ok": "Ok",
     "close": "Close"
+  },
+  "my_page": {
+    "my_task": "My Task",
+    "in_progress_task": "In Progress Task",
+    "i_am_pm": "I am PM",
+    "my_collab_project": "My Collab Project"
   }
 }
