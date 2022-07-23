@@ -12,12 +12,12 @@ import { AuthService, User } from '@core/authentication';
         alt="avatar"
         width="64"
       />
-      <h4 class="matero-user-panel-name">
+      <h4 class="matero-user-panel-name text-nowrap">
         {{ user.profile.first_name }} {{ user.profile.last_name }}
       </h4>
-      <h5 class="user-panel-department">{{ user.profile.department }}</h5>
-      <div class="matero-user-panel-icons">
-        <!-- <a routerLink="/profile/overview" mat-icon-button>
+      <h5 class="user-panel-department text-nowrap">{{ user.profile.department }}</h5>
+      <!-- <div class="matero-user-panel-icons">
+        <a routerLink="/profile/overview" mat-icon-button>
           <mat-icon class="icon-18">account_circle</mat-icon>
         </a>
         <a routerLink="/profile/settings" mat-icon-button>
@@ -25,8 +25,8 @@ import { AuthService, User } from '@core/authentication';
         </a>
         <a (click)="logout()" mat-icon-button>
           <mat-icon class="icon-18">exit_to_app</mat-icon>
-        </a> -->
-      </div>
+        </a>
+      </div> -->
     </div>
   `,
   styleUrls: ['./user-panel.component.scss'],
