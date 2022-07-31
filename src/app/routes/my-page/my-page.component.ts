@@ -20,14 +20,16 @@ export class MyPageComponent implements OnInit, AfterViewInit {
   currentUser: User | undefined;
   summaryBox: any = [];
   risk_list: any = [];
+  risk_list_tmp: any = [];
   issue_list: any = [];
+  issue_list_tmp: any = [];
   load_risk_list = false;
-  filteredRiskList = [];
+  load_issue_list = false;
+  filteredRiskList: any = [];
   currentRiskListPage = 1;
   maxSize = 10;
-  load_issue_list = false;
   currentIssueListPage = 1;
-  filteredIssueList = [];
+  filteredIssueList: any = [];
   projects: any = [];
   projects_option: any = [];
   task_all: any = [];
@@ -36,6 +38,8 @@ export class MyPageComponent implements OnInit, AfterViewInit {
   tasks: any = [];
   currentTasksPage = 1;
   filteredTasks: any = [];
+  risk_option = { id: 0, lable: 'All' };
+  issue_option = { id: 0, lable: 'All' };
 
   constructor(
     private preloader: PreloaderService,
@@ -77,6 +81,25 @@ export class MyPageComponent implements OnInit, AfterViewInit {
     this.preloader.hide();
   }
 
+  get riskNumbers(): number[] {
+    const limit = this.risk_list.length ? Math.ceil(this.risk_list.length / this.maxSize) : 1;
+    return Array.from({ length: limit }, (_, i) => i + 1);
+  }
+  get issueNumbers(): number[] {
+    const limit = this.issue_list.length ? Math.ceil(this.issue_list.length / this.maxSize) : 1;
+    return Array.from({ length: limit }, (_, i) => i + 1);
+  }
+
+  to(page: number, type: string) {
+    if (type == 'risk') {
+      this.currentRiskListPage = page;
+      this.pageRiskListChanged();
+    } else {
+      this.currentIssueListPage = page;
+      this.pageIssueListChanged();
+    }
+  }
+
   getProject() {
     this.auth
       .userProfile('&includes[]=activeProjects.risks&includes[]=activeProjects.issues')
@@ -101,12 +124,12 @@ export class MyPageComponent implements OnInit, AfterViewInit {
               for (const j in my_collab_projects[i].risks) {
                 this.risk_list.push(my_collab_projects[i].risks[j]);
               }
-              const risk_list = this.risk_list;
+              this.risk_list_tmp = this.risk_list;
 
               for (const j in my_collab_projects[i].issues) {
                 this.issue_list.push(my_collab_projects[i].issues[j]);
               }
-              const issue_list = this.issue_list;
+              this.issue_list_tmp = this.issue_list;
             }
 
             if (profile_aid) {
@@ -142,6 +165,8 @@ export class MyPageComponent implements OnInit, AfterViewInit {
             }
 
             this.projects_option = temp_proj;
+            this.risk_option = this.projects_option[0];
+            this.issue_option = this.projects_option[0];
 
             const arr_aid = keys(this.projects);
             const data = {
@@ -322,4 +347,64 @@ export class MyPageComponent implements OnInit, AfterViewInit {
       this.showDiv = true;
     }
   }
+
+  riskOptionChange = () => {
+    this.load_risk_list = true;
+    const profile_aid = this.currentUser?.profile.aid;
+
+    if (this.risk_option.id == 0) {
+      this.risk_list = this.risk_list_tmp;
+      if (profile_aid) {
+        this.risk_list = filter(this.risk_list, item => {
+          return profile_aid == item.owner_user_aid;
+        });
+      }
+
+      this.load_risk_list = false;
+      this.pageRiskListChanged();
+    } else {
+      this.risk_list = filter(this.risk_list_tmp, item => {
+        return this.risk_option.id == item.project_aid;
+      });
+
+      if (profile_aid) {
+        this.risk_list = filter(this.risk_list, function (item) {
+          console.log(item);
+          return profile_aid == item.owner_user_aid;
+        });
+      }
+
+      this.load_risk_list = false;
+      this.pageRiskListChanged();
+    }
+  };
+
+  issueOptionChange = () => {
+    this.load_issue_list = true;
+    const profile_aid = this.currentUser?.profile.aid;
+
+    if (this.issue_option.id == 0) {
+      this.issue_list = this.issue_list_tmp;
+      if (profile_aid) {
+        this.issue_list = filter(this.issue_list, function (item) {
+          return profile_aid == item.owner_user_aid;
+        });
+      }
+
+      this.load_issue_list = false;
+      this.pageIssueListChanged();
+    } else {
+      this.issue_list = filter(this.issue_list_tmp, item => {
+        return this.issue_option.id == item.project_aid;
+      });
+      if (profile_aid) {
+        this.issue_list = filter(this.issue_list, function (item) {
+          return profile_aid == item.owner_user_aid;
+        });
+      }
+
+      this.load_issue_list = false;
+      this.pageIssueListChanged();
+    }
+  };
 }

@@ -9,6 +9,7 @@ import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { MaterialModule } from '../material.module';
 
@@ -28,6 +29,7 @@ const MODULES: any[] = [
   FlexLayoutModule,
   TranslateModule,
   NgxPermissionsModule,
+  NgSelectModule,
 ];
 const COMPONENTS: any[] = [ErrorCodeComponent, BreadcrumbComponent];
 

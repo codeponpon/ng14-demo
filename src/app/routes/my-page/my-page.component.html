@@ -26,9 +26,170 @@
   </div>
 </div>
 
+<div class="matero-row" fxLayout="row wrap">
+  <div class="matero-col" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="example-card">
+      <mat-card-title>
+        <div class="risk row">
+          <div class="col">
+            <i class="fas fa-1 fa-exclamation-triangle me-2"></i>
+            <span class="task-status text-header">{{ 'risk' | translate }}</span>
+          </div>
+          <div class="col">
+            <ng-select
+              [(ngModel)]="risk_option.id"
+              [searchable]="false"
+              [clearable]="false"
+              [items]="projects_option"
+              (change)="riskOptionChange()"
+              bindLabel="lable"
+              bindValue="id"
+              class="font-14"
+              style="max-width: 280px"
+            ></ng-select>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content class="table-responsive">
+        <div class="line3"></div>
+        <table class="table table-hover table-borderless">
+          <thead>
+            <tr class="tb-nobr">
+              <th>TITLE</th>
+              <th>MITIGATION PLAN</th>
+              <th>Critical Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tb-nobr" *ngFor="let item of filteredRiskList">
+              <td>{{ item.title }}</td>
+              <td>{{ item.mitigation }}</td>
+              <td>{{ item.critical_level_name }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="line3" *ngIf="!risk_list || risk_list.length === 0"></div>
+        <div class="row" *ngIf="!risk_list || risk_list.length === 0">
+          <div class="text-center empty" style="padding: 10px">
+            <span *ngIf="!load_risk_list; else loading">ไม่มีข้อมูล</span>
+          </div>
+        </div>
+        <div class="line3"></div>
+        <!-- paginator -->
+        <nav *ngIf="riskNumbers.length > 0">
+          <ul class="pagination justify-content-center mt-4">
+            <li id="prev" class="page-item" [ngClass]="{ disabled: currentRiskListPage === 1 }">
+              <a class="page-link" href="#" (click)="pageRiskListChanged()">Previous</a>
+            </li>
+            <ng-container *ngIf="riskNumbers.length > 0">
+              <li
+                class="page-item"
+                *ngFor="let number of riskNumbers"
+                [ngClass]="{ active: currentRiskListPage === number }"
+              >
+                <a class="page-link" href="#" (click)="to(number, 'risk')">{{ number }}</a>
+              </li>
+            </ng-container>
+            <li
+              id="next"
+              class="page-item"
+              [ngClass]="{ disabled: currentRiskListPage === riskNumbers.length }"
+            >
+              <a class="page-link" href="#" (click)="pageRiskListChanged()" disabled="true">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="matero-col" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="example-card">
+      <mat-card-title>
+        <div class="text-info row">
+          <div class="col">
+            <i class="fas fa-1 fa-bolt me-2"></i>
+            <span class="task-status text-header">{{ 'issue' | translate }}</span>
+          </div>
+          <div class="col">
+            <ng-select
+              [(ngModel)]="issue_option.id"
+              [searchable]="false"
+              [clearable]="false"
+              [items]="projects_option"
+              (change)="issueOptionChange()"
+              bindLabel="lable"
+              bindValue="id"
+              class="font-14"
+              style="max-width: 280px"
+            ></ng-select>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content class="table-responsive">
+        <div class="line3"></div>
+        <table class="table table-hover table-borderless">
+          <thead>
+            <tr class="tb-nobr">
+              <th>TITLE</th>
+              <th>CORRECTIVE ACTION</th>
+              <th>Risk Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="tb-nobr" *ngFor="let item of filteredIssueList">
+              <td>{{ item.title }}</td>
+              <td>{{ item.corrective_action }}</td>
+              <td class="text-center">{{ item.risk_amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="line3" *ngIf="!issue_list || issue_list.length === 0"></div>
+        <div class="row" *ngIf="!issue_list || issue_list.length === 0">
+          <div class="text-center empty" style="padding: 10px">
+            <span *ngIf="!load_issue_list; else loading">ไม่มีข้อมูล</span>
+          </div>
+        </div>
+        <div class="line3"></div>
+        <!-- paginator -->
+        <nav *ngIf="issueNumbers.length > 0">
+          <ul class="pagination justify-content-center mt-4">
+            <li id="prev" class="page-item" [ngClass]="{ disabled: currentIssueListPage === 1 }">
+              <a class="page-link" href="#" (click)="pageIssueListChanged()">Previous</a>
+            </li>
+            <ng-container *ngIf="issueNumbers.length > 0">
+              <li
+                class="page-item"
+                *ngFor="let number of issueNumbers"
+                [ngClass]="{ active: currentIssueListPage === number }"
+              >
+                <a class="page-link" href="#" (click)="to(number, 'risk')">{{ number }}</a>
+              </li>
+            </ng-container>
+            <li
+              id="next"
+              class="page-item"
+              [ngClass]="{ disabled: currentIssueListPage === issueNumbers.length }"
+            >
+              <a class="page-link" href="#" (click)="pageIssueListChanged()" disabled="true"
+                >Next</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
 <ng-template #boxContentTpl let-item="item">
   <i class="{{ item.class }}"></i>
   <span class="text-header-top">{{ item.title | translate }}</span>
   <span fxFlex></span>
   <span class="counter text-right">{{ item.value }}</span>
+</ng-template>
+
+<ng-template #loading>
+  <div id="loader">
+    <div class="cssload-speeding-wheel"></div>
+  </div>
 </ng-template>
