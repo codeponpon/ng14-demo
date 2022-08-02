@@ -40,6 +40,7 @@ export class MyPageComponent implements OnInit, AfterViewInit {
   filteredTasks: any = [];
   risk_option = { id: 0, lable: 'All' };
   issue_option = { id: 0, lable: 'All' };
+  date = new Date();
 
   constructor(
     private preloader: PreloaderService,
@@ -407,4 +408,8 @@ export class MyPageComponent implements OnInit, AfterViewInit {
       this.pageIssueListChanged();
     }
   };
+
+  countIsSelected(data: any) {
+    return filter(data, d => d.resourcedailyplans_selected_for_service)?.length;
+  }
 }

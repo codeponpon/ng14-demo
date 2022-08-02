@@ -103,10 +103,23 @@
   padding: 4px 0 !important;
 }
 
+.line {
+  width: 100%;
+  height: 3px;
+  margin: 5px 0 10px;
+  background-color: #2a54f6;
+}
+
 .line3 {
   width: 100%;
   height: 3px;
-  background: #e6e7e8;
+  background-color: #e6e7e8;
+}
+
+.work {
+  color: #414141;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 #loader {

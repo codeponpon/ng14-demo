@@ -25,13 +25,16 @@
             if(
               $is-dark-theme,
               color.adjust(mat.get-color-from-palette($primary), $lightness: 25%),
-              mat.get-color-from-palette($accent)
+              #fff
             );
-          background-color: if($is-dark-theme, rgba(mat.get-color-from-palette($primary), .15), transparent);
-
-          &:hover {
-            background: mat.get-color-from-palette($background, hover);
-          }
+          font-weight: 500;
+          background-color:
+            if(
+              $is-dark-theme,
+              rgba(mat.get-color-from-palette($primary), .15),
+              mat.get-color-from-palette($primary)
+            );
+          border-left: 3px solid mat.get-color-from-palette($primary);
         }
       }
 
